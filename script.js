@@ -4,7 +4,8 @@ const userInput = document.getElementById("userInput");
 const chatWindow = document.getElementById("chatWindow");
 
 // Cloudflare Worker endpoint (replaces direct OpenAI API calls)
-const CLOUDFLARE_WORKER_URL = "https://lorealpage-worker.jademckenzieshort.workers.dev/";
+const CLOUDFLARE_WORKER_URL =
+  "https://lorealpage-worker.jademckenzieshort.workers.dev/";
 
 // Note: API key is now securely stored in Cloudflare Worker, not exposed to users
 
@@ -22,8 +23,8 @@ If someone asks about topics unrelated to beauty, L'Oréal products, or cosmetic
 let messageHistory = [
   {
     role: "system",
-    content: SYSTEM_PROMPT
-  }
+    content: SYSTEM_PROMPT,
+  },
 ];
 
 // Set initial message
@@ -32,64 +33,70 @@ chatWindow.innerHTML = `<div class="msg ai">👋 Hello! I'm your L'Oréal beauty
 /* Handle form submit */
 chatForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  
+
   // Get user message
   const message = userInput.value.trim();
   if (!message) return;
-  
+
   // Clear input
   userInput.value = "";
-  
+
   // Add user message to chat
   addMessage(message, "user");
-  
+
   // Add user message to history
   messageHistory.push({
     role: "user",
-    content: message
+    content: message,
   });
-  
+
   try {
-    // Show loading message
-    addMessage("Thinking...", "ai");
-    
+    // Show elegant typing indicator
+    const typingDiv = document.createElement("div");
+    typingDiv.className = "msg ai typing-indicator";
+    typingDiv.innerHTML = "";
+    chatWindow.appendChild(typingDiv);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+
     // Call Cloudflare Worker (handles OpenAI API securely)
     const response = await fetch(CLOUDFLARE_WORKER_URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        messages: messageHistory
-      })
+        messages: messageHistory,
+      }),
     });
-    
+
     // Remove loading message
     removeLastMessage();
-    
+
     // Check if response is ok
     if (!response.ok) {
       throw new Error(`API Error: ${response.status}`);
     }
-    
+
     // Get response data
     const data = await response.json();
     const aiMessage = data.choices[0].message.content;
-    
+
     // Add AI response to chat and history
     addMessage(aiMessage, "ai");
     messageHistory.push({
       role: "assistant",
-      content: aiMessage
+      content: aiMessage,
     });
-    
   } catch (error) {
-    // Remove loading message if there was an error
+    // Remove typing indicator if there was an error
     removeLastMessage();
-    
+
     // Show error message
     console.error("Error:", error);
-    addMessage("Sorry, I'm having trouble connecting right now. Please try again!", "ai");
+    addMessage(
+      "Sorry, I'm having trouble connecting right now. Please try again!",
+      "ai"
+    );
   }
 });
 
@@ -99,7 +106,7 @@ function addMessage(message, sender) {
   messageDiv.className = `msg ${sender}`;
   messageDiv.textContent = message;
   chatWindow.appendChild(messageDiv);
-  
+
   // Scroll to bottom
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }

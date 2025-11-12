@@ -149,22 +149,21 @@ body {
 }
 
 .chat-window::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 .chat-window::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
+  background: transparent;
 }
 
 .chat-window::-webkit-scrollbar-thumb {
-  background: var(--loreal-gold);
-  border-radius: 4px;
-  box-shadow: inset 0 0 3px rgba(227, 165, 53, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
 
 .chat-window::-webkit-scrollbar-thumb:hover {
-  background: #d4941f;
+  background: var(--loreal-black);
 }
 
 /* messages */
@@ -431,5 +430,29 @@ body {
   .site-footer a {
     margin: 0 6px;
     font-size: 12px;
+  }
+}
+
+/* —— Typing Indicator Animation —— */
+.typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  font-style: italic;
+  color: #999;
+}
+
+.typing-indicator::before {
+  content: '• • •';
+  animation: typingDots 1.4s ease-in-out infinite;
+  letter-spacing: 4px;
+  color: var(--loreal-gold);
+}
+
+@keyframes typingDots {
+  0%, 60%, 100% {
+    opacity: 0.4;
+  }
+  30% {
+    opacity: 1;
   }
 }
