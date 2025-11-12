@@ -3,8 +3,10 @@ const chatForm = document.getElementById("chatForm");
 const userInput = document.getElementById("userInput");
 const chatWindow = document.getElementById("chatWindow");
 
-// OpenAI API endpoint
-const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
+// Cloudflare Worker endpoint (replaces direct OpenAI API calls)
+const CLOUDFLARE_WORKER_URL = "https://lorealpage-worker.jademckenzieshort.workers.dev/";
+
+// Note: API key is now securely stored in Cloudflare Worker, not exposed to users
 
 // System prompt for L'Oréal chatbot
 const SYSTEM_PROMPT = `You are a helpful L'Oréal beauty assistant. You should only answer questions related to:
@@ -51,18 +53,14 @@ chatForm.addEventListener("submit", async (e) => {
     // Show loading message
     addMessage("Thinking...", "ai");
     
-    // Call OpenAI API
-    const response = await fetch(OPENAI_API_URL, {
+    // Call Cloudflare Worker (handles OpenAI API securely)
+    const response = await fetch(CLOUDFLARE_WORKER_URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${OPENAI_API_KEY}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "gpt-4o",
-        messages: messageHistory,
-        max_tokens: 500,
-        temperature: 0.7
+        messages: messageHistory
       })
     });
     
