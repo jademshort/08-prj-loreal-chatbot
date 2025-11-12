@@ -1,3 +1,11 @@
+/* —— L'Oréal Brand Colors —— */
+:root {
+  --loreal-black: #000000;
+  --loreal-white: #ffffff;
+  --loreal-red: #ff003b;
+  --loreal-gold: #e3a535;
+}
+
 /* —— basic reset —— */
 * {
   box-sizing: border-box;
@@ -8,112 +16,224 @@
 /* —— body + fonts —— */
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  color: #333;
+  color: var(--loreal-black);
+  background: var(--loreal-white);
   display: flex;
   justify-content: center;
+  min-height: 100vh;
 }
 
 .page-wrapper {
   width: 90%;
   max-width: 900px;
+  background: var(--loreal-white);
 }
 
 /* header */
 .site-header {
   text-align: center;
-  padding-top: 50px;
+  padding: 30px 0 20px 0;
+  background: linear-gradient(135deg, var(--loreal-white) 0%, #fafafa 100%);
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.site-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--loreal-gold) 0%, #f4d03f 30%, #fff 50%, #f4d03f 70%, var(--loreal-gold) 100%);
+  box-shadow: 0 0 15px rgba(227, 165, 53, 0.4);
+  animation: goldShimmer 3s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; box-shadow: 0 0 20px rgba(227, 165, 53, 0.6); }
 }
 
 .logo {
-  height: 45px;
+  height: 40px;
   width: auto;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .site-title {
   font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--loreal-black);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* chat window */
 .chatbox {
-  margin: 40px 0;
+  margin: 25px 0;
+  background: var(--loreal-white);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .chat-window {
-  height: 300px;
-  border: 1px solid #000;
+  height: 280px;
+  border: none;
   padding: 20px;
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
   overflow-y: auto;
-  background: #fafafa;
+  background: linear-gradient(145deg, var(--loreal-white) 0%, #fdfbfb 100%);
   white-space: pre-line;
+  border-radius: 8px;
+}
+
+.chat-window::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: var(--loreal-gold);
+  border-radius: 4px;
+  box-shadow: inset 0 0 3px rgba(227, 165, 53, 0.3);
+}
+
+.chat-window::-webkit-scrollbar-thumb:hover {
+  background: #d4941f;
 }
 
 /* messages */
 .msg {
-  margin-bottom: 14px;
-  line-height: 1.5;
+  margin-bottom: 18px;
+  line-height: 1.6;
+  padding: 12px 16px;
+  border-radius: 20px;
+  max-width: 85%;
+  word-wrap: break-word;
 }
 
 .msg.user {
-  color: #000;
+  background: rgba(248, 249, 250, 0.8);
+  color: var(--loreal-red);
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+  font-weight: 500;
+  border: 1px solid rgba(255, 0, 59, 0.1);
 }
 
 .msg.ai {
-  color: #666666;
+  background: rgba(248, 249, 250, 0.6);
+  color: var(--loreal-black);
+  margin-left: 0;
+  margin-right: auto;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
 /* input row */
 .chat-form {
   display: flex;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, var(--loreal-white) 100%);
+  border-radius: 0 0 12px 12px;
 }
 
 .chat-form input {
   flex: 1;
-  padding: 12px;
-  border: 1px solid #ccc;
-  font-size: 18px;
+  padding: 15px 20px;
+  border: 2px solid transparent;
+  background: var(--loreal-white);
+  font-size: 16px;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 .chat-form input:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
+  outline: none;
+  border: 2px solid var(--loreal-red);
+  box-shadow: 0 0 0 3px rgba(255, 0, 59, 0.1);
+  transform: translateY(-2px);
+}
+
+.chat-form input::placeholder {
+  color: #999;
+  font-weight: 300;
 }
 
 .chat-form button {
   font-size: 18px;
-  background: #000;
-  color: #fff;
+  background: linear-gradient(135deg, var(--loreal-red) 0%, #e6002f 100%);
+  color: var(--loreal-white);
   border: none;
-  padding: 12px;
-  width: 48px;
-  height: 48px;
+  padding: 15px;
+  width: 55px;
+  height: 55px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 6px 20px rgba(255, 0, 59, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.chat-form button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.chat-form button:hover::before {
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
 }
 
 .chat-form button .material-icons {
   font-size: 24px;
+  z-index: 1;
 }
 
 .chat-form button:hover {
-  background: #666666;
+  background: linear-gradient(135deg, #e6002f 0%, var(--loreal-red) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 0, 59, 0.6);
 }
 
 .chat-form button:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 0, 59, 0.3);
 }
 
 /* visually hidden */
@@ -131,22 +251,55 @@ body {
 
 /* footer */
 .site-footer {
-  margin: 60px 0 40px;
+  margin: 30px 0 0 0;
+  padding: 20px 0;
   text-align: center;
   font-size: 14px;
   color: #666;
+  background: linear-gradient(135deg, #f8f9fa 0%, var(--loreal-white) 100%);
+  border-top: 1px solid #eee;
+  position: relative;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--loreal-gold) 0%, #f4d03f 50%, var(--loreal-gold) 100%);
 }
 
 .site-footer nav {
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
 .site-footer a {
-  margin: 0 8px;
-  color: #000;
+  margin: 0 12px;
+  color: var(--loreal-black);
   text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.site-footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--loreal-red);
+  transition: width 0.3s ease;
 }
 
 .site-footer a:hover {
-  color: #666666;
+  color: var(--loreal-red);
+}
+
+.site-footer a:hover::after {
+  width: 100%;
 }
