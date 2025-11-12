@@ -80,12 +80,27 @@ chatForm.addEventListener("submit", async (e) => {
     // Get response data
     const data = await response.json();
     const aiMessage = data.choices[0].message.content;
+    
+    // Check if response was truncated (common signs of cutoff)
+    const truncationSigns = [
+      /\d+\.\s*$/, // Ends with number and period (like "7.")
+      /\d+\s*$/, // Ends with just a number (like "7")
+      /[^.!?]\s*$/, // Doesn't end with proper punctuation
+      /\w{3,}\s*$/ // Ends with a word (incomplete sentence)
+    ];
+    
+    let finalMessage = aiMessage;
+    const seemsTruncated = truncationSigns.some(pattern => pattern.test(aiMessage.trim()));
+    
+    if (seemsTruncated && aiMessage.length > 200) {
+      finalMessage += "\n\n💡 *Response may be incomplete. Feel free to ask me to continue or clarify!*";
+    }
 
     // Add AI response to chat and history
-    addMessage(aiMessage, "ai");
+    addMessage(finalMessage, "ai");
     messageHistory.push({
       role: "assistant",
-      content: aiMessage,
+      content: aiMessage, // Store original without the note
     });
   } catch (error) {
     // Remove typing indicator if there was an error
