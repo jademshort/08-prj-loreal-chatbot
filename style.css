@@ -433,6 +433,56 @@ body {
   }
 }
 
+/* —— Extra Small Mobile Screens —— */
+@media (max-width: 375px) {
+  /* iPhone SE and smaller devices */
+  
+  .chat-form {
+    gap: 10px;
+    padding: 15px;
+  }
+  
+  .chat-form input {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+  
+  .chat-form button {
+    width: 45px;
+    height: 45px;
+    padding: 12px;
+  }
+  
+  .chat-form button .material-icons {
+    font-size: 20px;
+  }
+  
+  .chat-window {
+    font-size: 13px;
+    padding: 15px 12px;
+    height: 230px;
+  }
+  
+  .msg {
+    padding: 8px 12px;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  
+  .site-title {
+    font-size: 18px;
+  }
+  
+  .logo {
+    height: 32px;
+  }
+  
+  .site-header {
+    padding: 25px 0 15px 0;
+    padding-bottom: 25px;
+  }
+}
+
 /* —— Typing Indicator Animation —— */
 .typing-indicator {
   display: inline-flex;
