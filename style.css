@@ -393,3 +393,43 @@ body {
 .site-footer a:hover::after {
   width: 100%;
 }
+
+/* —— Mobile Responsive Design —— */
+@media (max-width: 428px) {
+  /* iPhone 14 Pro Max and smaller devices */
+  
+  .chat-window {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 20px 15px;
+    height: 250px;
+  }
+  
+  .msg {
+    padding: 10px 14px;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  
+  .chat-form input {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+  
+  .site-title {
+    font-size: 20px;
+  }
+  
+  .logo {
+    height: 35px;
+  }
+  
+  .site-footer {
+    font-size: 12px;
+  }
+  
+  .site-footer a {
+    margin: 0 6px;
+    font-size: 12px;
+  }
+}
