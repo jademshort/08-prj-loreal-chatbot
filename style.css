@@ -17,7 +17,13 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: var(--loreal-black);
-  background: linear-gradient(135deg, #ffffff 0%, #fefefe 30%, #fdfdfd 70%, #ffffff 100%);
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #fefefe 30%,
+    #fdfdfd 70%,
+    #ffffff 100%
+  );
   background-size: 400% 400%;
   animation: subtleBreath 15s ease-in-out infinite;
   display: flex;
@@ -26,8 +32,13 @@ body {
 }
 
 @keyframes subtleBreath {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .page-wrapper {
@@ -46,21 +57,34 @@ body {
 }
 
 .site-header::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 120px;
   height: 4px;
-  background: linear-gradient(90deg, var(--loreal-gold) 0%, #f4d03f 30%, #fff 50%, #f4d03f 70%, var(--loreal-gold) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--loreal-gold) 0%,
+    #f4d03f 30%,
+    #fff 50%,
+    #f4d03f 70%,
+    var(--loreal-gold) 100%
+  );
   box-shadow: 0 0 15px rgba(227, 165, 53, 0.4);
   animation: goldShimmer 3s ease-in-out infinite;
 }
 
 @keyframes goldShimmer {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 1; box-shadow: 0 0 20px rgba(227, 165, 53, 0.6); }
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(227, 165, 53, 0.6);
+  }
 }
 
 .logo {
@@ -77,15 +101,14 @@ body {
 
 .logo:hover {
   transform: scale(1.05);
-  filter: 
-    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12))
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12))
     drop-shadow(0 0 20px rgba(227, 165, 53, 0.2));
 }
 
 .site-title {
   font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 5px;
+  font-weight: 300;
+  margin-bottom: 10px;
   color: var(--loreal-black);
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
@@ -96,9 +119,7 @@ body {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 12px;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.06),
-    0 1px 2px rgba(0, 0, 0, 0.04),
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
   overflow: hidden;
   animation: gentleFloat 8s ease-in-out infinite;
@@ -106,8 +127,13 @@ body {
 }
 
 @keyframes gentleFloat {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-2px) scale(1.002); }
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.002);
+  }
 }
 
 .chat-window {
@@ -155,12 +181,12 @@ body {
 }
 
 @keyframes messageAppear {
-  from { 
-    opacity: 0; 
+  from {
+    opacity: 0;
     transform: translateY(10px) scale(0.98);
   }
-  to { 
-    opacity: 1; 
+  to {
+    opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
@@ -214,9 +240,7 @@ body {
 .chat-form input:focus {
   outline: none;
   border: 2px solid var(--loreal-red);
-  box-shadow: 
-    0 0 0 3px rgba(255, 0, 59, 0.08),
-    0 8px 25px rgba(255, 0, 59, 0.1),
+  box-shadow: 0 0 0 3px rgba(255, 0, 59, 0.08), 0 8px 25px rgba(255, 0, 59, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transform: translateY(-2px) scale(1.01);
 }
@@ -246,13 +270,18 @@ body {
 }
 
 .chat-form button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   transform: rotate(45deg);
   transition: all 0.6s ease;
   opacity: 0;
@@ -263,9 +292,17 @@ body {
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+    opacity: 0;
+  }
 }
 
 .chat-form button .material-icons {
@@ -310,14 +347,19 @@ body {
 }
 
 .site-footer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 80px;
   height: 2px;
-  background: linear-gradient(90deg, var(--loreal-gold) 0%, #f4d03f 50%, var(--loreal-gold) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--loreal-gold) 0%,
+    #f4d03f 50%,
+    var(--loreal-gold) 100%
+  );
 }
 
 .site-footer nav {
@@ -334,7 +376,7 @@ body {
 }
 
 .site-footer a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -3px;
   left: 0;
