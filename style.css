@@ -15,7 +15,7 @@
 
 /* —— body + fonts —— */
 body {
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: var(--loreal-black);
   background: var(--loreal-white);
   display: flex;
@@ -71,8 +71,7 @@ body {
   font-weight: 700;
   margin-bottom: 5px;
   color: var(--loreal-black);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 /* chat window */
@@ -163,7 +162,7 @@ body {
   border-radius: 25px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .chat-form input:focus {
