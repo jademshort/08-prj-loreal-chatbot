@@ -17,10 +17,17 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: var(--loreal-black);
-  background: var(--loreal-white);
+  background: linear-gradient(135deg, #ffffff 0%, #fefefe 30%, #fdfdfd 70%, #ffffff 100%);
+  background-size: 400% 400%;
+  animation: subtleBreath 15s ease-in-out infinite;
   display: flex;
   justify-content: center;
   min-height: 100vh;
+}
+
+@keyframes subtleBreath {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .page-wrapper {
@@ -64,6 +71,15 @@ body {
   margin-left: auto;
   margin-right: auto;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  filter: 
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12))
+    drop-shadow(0 0 20px rgba(227, 165, 53, 0.2));
 }
 
 .site-title {
@@ -77,10 +93,21 @@ body {
 /* chat window */
 .chatbox {
   margin: 25px 0;
-  background: var(--loreal-white);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   overflow: hidden;
+  animation: gentleFloat 8s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-2px) scale(1.002); }
 }
 
 .chat-window {
@@ -122,6 +149,25 @@ body {
   border-radius: 20px;
   max-width: 85%;
   word-wrap: break-word;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  animation: messageAppear 0.6s ease-out forwards;
+}
+
+@keyframes messageAppear {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px) scale(0.98);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+  }
+}
+
+.msg:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .msg.user {
@@ -168,8 +214,11 @@ body {
 .chat-form input:focus {
   outline: none;
   border: 2px solid var(--loreal-red);
-  box-shadow: 0 0 0 3px rgba(255, 0, 59, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 
+    0 0 0 3px rgba(255, 0, 59, 0.08),
+    0 8px 25px rgba(255, 0, 59, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px) scale(1.01);
 }
 
 .chat-form input::placeholder {
